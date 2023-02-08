@@ -1,0 +1,20 @@
+{
+  "name": "कृदन्तदर्शिका ",
+  "version": "1.0.3",
+  "manifest_version": 3,
+  "description": "Shows related kridanta forms",
+  "permissions": [
+  ],
+  "background": {
+      "service_worker": "js/background.js",
+      "type": "module"
+  },
+  "content_scripts": [ {
+    "js": ["js/main.js"],
+    "matches": ["<all_urls>"]
+
+  } ],
+  "icons": {
+      "128": "kr3.png"
+  }
+}
