@@ -1,4 +1,6 @@
 // info on shadow: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
+clientVersion=chrome.runtime.getManifest().version;
+console.log(clientVersion);
 function showShadow(e){
   const shadowHostId= "snskrtbxuniq";
   if(document.getElementById(shadowHostId) != null)
@@ -46,8 +48,13 @@ function fillShadow(txtbox,respbox) {
   (async () => {
     t0 = Date.now();
     console.log(txt + ": "+ (new Date().toLocaleString()));
-    const response = await chrome.runtime.sendMessage({word: encodedWord});
+    const cresponse = await chrome.runtime.sendMessage({word: encodedWord, version:clientVersion});
+    var response = cresponse;
     t1 = Date.now();
+    if('version' in cresponse){
+      console.log(response);
+      response = response['mainData'];
+    }
     respbox.innerHTML='';
     if(Object.keys(response).length==0){
       feedback = document.createElement('span');
