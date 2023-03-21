@@ -1,8 +1,8 @@
 {
-  "name": "कृदन्तदर्शिका ",
-  "version": "1.0.4",
+  "name": "कृदन्तदर्शिका, Sanskrit Parser & dictionary",
+  "version": "2.0.6",
   "manifest_version": 3,
-  "description": "Shows related kridanta forms",
+  "description": "Parses a Sanskrit word and gives English meanings of the constituent words, and related Kridanta forms if any",
   "permissions": [
   ],
   "background": {
@@ -15,6 +15,8 @@
 
   } ],
   "icons": {
-      "128": "kr3.png"
+      "128": "k128.png",
+      "48": "k048.png",
+      "16": "k016.png"
   }
 }
