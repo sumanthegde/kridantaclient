@@ -142,7 +142,7 @@ function extendTable(dmap,oldTable){
     const td1 = tr.insertCell();
     anchor = document.createElement('a');
     anchor.appendChild(document.createTextNode(key));
-    anchor.href = encodeURI('https://ashtadhyayi.com/kosha/#mode=direct&word=' + key);
+    anchor.href = encodeURI('https://ashtadhyayi.com/kosha/?search=' + key);
     anchor.target = '_blank';
     td1.appendChild(anchor);
     td1.style.border = '0.1px solid #CCCCCC';

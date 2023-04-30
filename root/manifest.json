@@ -1,6 +1,6 @@
 {
   "name": "कृदन्तदर्शिका, Sanskrit Parser & dictionary",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "manifest_version": 3,
   "description": "Parses a Sanskrit word and gives English meanings of the constituent words, and related Kridanta forms if any",
   "permissions": [
