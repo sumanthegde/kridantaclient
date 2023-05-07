@@ -33,16 +33,6 @@ function showShadow(e){
     }
   });
 
-//  const message = document.createElement('span');
-//  message.textContent = 'Edit & hit \u2386!';
-//  message.style.marginLeft = '0px'; // adjust margin to move message closer to input box
-//  message.style.fontSize = '14px'; // set font size
-//  message.style.fontStyle= 'italic'; 
-//  message.style.color = '#808080'; // set gray color
-//  message.style.whiteSpace = 'normal'; // allow message to wrap around
-//  message.style.display = 'inline-flex';
-//  message.style.alig
-
   const container = document.createElement('div');
   container.style.display = 'flex';
   container.style.alignItems = 'center';
@@ -71,19 +61,20 @@ function fillShadow(txtbox,respbox) {
     t1 = Date.now();
     var response = response3['mainData'];
     var auxData = response3['auxData'];
+    var combData = response3['combData'];
     var dmap = new Map();
-    console.log(auxData);
-    if(auxData.length>0){
-      const responses = await Promise.all(auxData[0].map(async (word) => {
+    var dkmap = new Map();
+    console.log(combData);
+    if(combData.length>0){
+      const responses = await Promise.all(combData[0].map(async ([word,kmap]) => {
         return await chrome.runtime.sendMessage({ word: word, type: 'dbLookup' });
       }));
       for (let i = 0; i < responses.length; i++) {
-        dmap.set(auxData[0][i], responses[i]);
+        dkmap.set(auxData[0][i], [responses[i],combData[0][i][1]]);
       }
     } 
-    console.log(dmap);
     respbox.innerHTML='';
-    if(Object.keys(response).length + dmap.size==0){
+    if(dkmap.size==0){
       feedback = document.createElement('span');
       feedback.id='feedback';
       feedback.innerHTML = feedbackStr;
@@ -98,9 +89,15 @@ function fillShadow(txtbox,respbox) {
       cell.appendChild(document.createTextNode('No data'));
       respbox.appendChild(tbl);
     }else{
-      tbl = tablify(response);
-      if(dmap.size>0)
-        extendTable(dmap,tbl);
+      tbl = document.createElement('table');
+      tbl.style.border = '1px solid #CCCCCC';
+      tbl.style.borderCollapse = 'collapse';
+      tbl.style.align = 'left';
+      tbl.style.float = 'right';
+      tbl.style.verticalAlign = "top";
+      //table.style.textAlign = "left";
+      if(dkmap.size>0)
+        extendTable(dkmap,tbl);
       cap = tbl.createCaption();
       cap.innerHTML = feedbackStr;
       cap.style.captionSide='bottom';
@@ -112,31 +109,45 @@ function fillShadow(txtbox,respbox) {
 //  return true;
 }
 
-function tablify(response){
-  tbl = document.createElement('table');
-  tbl.style.border = '1px solid #CCCCCC';
+// previously, input was a map {affixdha1: krits1, affixdha2: krits2}
+// now, input is a map {word1: [d1, {affixdha1.1: krits1.1, affixdha1.2: krits1.2}], word2: [d2, {affixdha2.1: krits2.1}], ...}
+function tablify(kmap) {
+  var tbl = document.createElement('table');
   tbl.style.borderCollapse = 'collapse';
   tbl.style.align = 'left';
-  tbl.style.float = 'right';
-  Object.keys(response).forEach(function(key) {
-    const tr = tbl.insertRow();
-    const td1 = tr.insertCell();
-    anchor = document.createElement('a');
+  tbl.style.float = 'left';
+  tbl.style.color='black';
+  tbl.style.fontStyle='italic';
+  tbl.style.fontSize='0.8em';
+  tbl.style.borderBottom = '1px solid #CCCCCC';
+  tbl.style.backgroundColor = "#FFF5FE";
+
+  Object.keys(kmap).forEach(function(key) {
+    var tr = document.createElement('tr');
+    var td1 = document.createElement('td');
+    var anchor = document.createElement('a');
     anchor.appendChild(document.createTextNode(key));
     anchor.href = encodeURI('https://sanskritabhyas.in/Kridanta/View/'+encodeDha(key));
     anchor.target = '_blank';
     td1.appendChild(anchor);
-    td1.style.border = '0.1px solid #CCCCCC';
+    //td1.style.border = '0.1px solid #CCCCCC';
     td1.style.fontWeight = 'bold';
-    const td2 = tr.insertCell();
-    td2.appendChild(document.createTextNode(response[key]));
-    td2.style.border = '0.1px solid #CCCCCC';
-  })
+    tr.appendChild(td1);
+
+    var td2 = document.createElement('td');
+    td2.appendChild(document.createTextNode(kmap[key]));
+    td2.style.borderBottom = '0.1px solid #CCCCCC';
+    tr.appendChild(td2);
+
+    tbl.appendChild(tr);
+  });
+
   return tbl;
 }
 
-function extendTable(dmap,oldTable){
-  dmap.forEach((value, key) => {
+
+function extendTable(dkmap,oldTable){
+  dkmap.forEach(([value,kmap], key) => {
     const tr = oldTable.insertRow();
     tr.style.backgroundColor = "#E1F5FE";
     const td1 = tr.insertCell();
@@ -148,14 +159,16 @@ function extendTable(dmap,oldTable){
     td1.style.border = '0.1px solid #CCCCCC';
     td1.style.fontWeight = 'bold';
     td1.style.whiteSpace = "nowrap";
+    td1.style.verticalAlign = 'top';
     const td2 = tr.insertCell();
     if(value==''){
       td2.style.color='grey';
       td2.style.fontStyle='italic';
-      td2.style.fontSize='0.8em';
+      //td2.style.fontSize='0.8em';
       td2.appendChild(document.createTextNode('\u2190 Click the link to search.'));
     }
     td2.appendChild(untagDictEntry(value));
+    td2.appendChild(tablify(kmap));
     td2.style.border = '0.1px solid #CCCCCC';
   });
 }
