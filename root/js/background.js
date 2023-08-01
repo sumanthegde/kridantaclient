@@ -18,10 +18,10 @@ chrome.runtime.onMessage.addListener(
 );
 
 function parse(request,sender,sendResponse){
-    var hosts=['http://localhost:8000','https://kridantaapp.fly.dev'];
+    var hosts=['http://localhost:8001','https://kridantaapp.fly.dev'];
     //var i = Math.random() > 0.5 ? 1 : 0;
     var i= isProduction ? 1:0;
-    var url=hosts[i].concat('/?word=').concat(request.word).concat('&version=').concat(request.version);
+    var url=hosts[i].concat('/?word=').concat(request.word).concat('&version=').concat(request.version).concat('&trigtype=').concat(request.trigtype);
     console.log(url);
     fetch(url)
     .then(response => response.json())
