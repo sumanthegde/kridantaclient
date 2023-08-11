@@ -9,7 +9,7 @@ This Chrome (or Firefox) extension provides the following feature:
 Go to [कृदन्तदर्शिका](https://t.co/9BwPXbIGzy) and click "Add To Chrome".
 
 ## Installing on Firefox
-1. Click and download the file [addon.firefox.xpi](https://github.com/sumanthegde/kridantaclient/blob/main/addon.firefox.xpi)
+1. Download `addon.firefox.xpi`. One way to do this is to right click this [link](https://github.com/sumanthegde/kridantaclient/raw/main/addon.firefox.xpi) and select "Save Link As...".
 1. Open Firefox.
 1. Click on the menu button (usually represented by three horizontal lines) in the top-right corner.
 1. Select "Add-ons and themes" from the dropdown menu.
