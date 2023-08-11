@@ -1,4 +1,6 @@
-import { sdict } from './cae_yat.js'; 
+import { sdict1 } from './caeyat1.js'; 
+import { sdict2 } from './caeyat2.js'; 
+import { sdict3 } from './caeyat3.js'; 
 
 var isProduction = false;
 
@@ -37,8 +39,12 @@ function parse(request,sender,sendResponse){
 
 function lookup(request,sender,sendResponse){
   var ans = '';
-  if(request.word in sdict)
-    ans = sdict[request.word];
+  if(request.word in sdict1)
+    ans = sdict1[request.word];
+  else if(request.word in sdict2)
+    ans = sdict2[request.word];
+  else if(request.word in sdict3)
+    ans = sdict3[request.word];
   sendResponse(ans);
   return true;
 }

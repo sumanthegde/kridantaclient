@@ -1,0 +1,23 @@
+{
+  "name": "कृदन्तदर्शिका, Sanskrit Parser & dictionary",
+  "version": "2.0.9.5",
+  "manifest_version": 2,
+  "description": "Parses a Sanskrit word and gives English meanings of the constituent words, and related Kridanta forms if any",
+  "permissions": [
+  ],
+  "background": {
+      "scripts": ["js/background.js"],
+      "type": "module"
+  },
+  "content_scripts": [ {
+    "js": ["js/main.js"],
+    "matches": ["<all_urls>"]
+
+  } ],
+  "icons": {
+      "128": "k128.png",
+      "48": "k048.png",
+      "16": "k016.png"
+  },
+  "browser_specific_settings.gecko.id": "D0937A76-B23D-4B6C-9AC4-18CFC437D70F"
+}
