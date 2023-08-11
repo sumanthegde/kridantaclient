@@ -37,6 +37,7 @@ As the title says, this Chrome (or Firefox) extension can:
   - We're even more conservative with तिङन्त's. Only लट्, लोट् and selected विधिलिङ् forms are considered. There too, on the grounds of rarity, forms like द्विवचन, मध्यमपुरुष, कर्मणि-उत्तमपुरुष etc are often ignored.
   - We recognize सुबन्त forms of प्रातिपदिक's that end with अ,आ,इ,ई,उ,ऊ,ऋ, त्,न् & स्. Thus, as yet, नौः-नावौ-नावः, वणिक्-वणिजौ-वणिजः are out-of-syllabus!
   - Our dictionary is restricted as well. We drop words that are too short and rare. 
+  - We don't support तद्धित forms (except those that are already in the dictionary, of course).
 ### Word split
 - Almost always, there are multiple ways to split a Sanskrit word. We simply proceed greedily (with some checks here and there)  and pick the first match. Thus, considering sentence-level context, the word split we offer may not necessarily be correct. In such cases, users are encouraged to use the textbox-editing feature and look up individual constituent words.
 
