@@ -11,22 +11,16 @@ As the title says, this Chrome (or Firefox) extension can:
 
 ## Installation
 ### Installing on Chrome
-1. Go to [कृदन्तदर्शिका](https://t.co/9BwPXbIGzy) and click "Add To Chrome".
+Go to [Chrome store](https://t.co/9BwPXbIGzy) and click "Add To Chrome".
 ### Installing on Firefox
-1. Download the .xpi file from the `bin` folder. One way to do this is to _right-click_ [this link](https://github.com/sumanthegde/kridantaclient/raw/main/bin/64f65bb13fe045c6acfa-2.0.9.5.xpi) and select "Save Link As...".
-1. Open Firefox.
-1. Click on the menu button (usually represented by three horizontal lines) in the top-right corner.
-1. Select "Add-ons and themes" from the dropdown menu.
-1. In the Add-ons Manager tab, click on the gear icon (settings) and choose "Install Add-on From File...".
-1. Navigate to the location where you just downloaded the .xpi file, and select it.
-1. Firefox will prompt the user to confirm the installation. Click "Install" to proceed.
+Go to [Firefox addons](https://addons.mozilla.org/en-US/firefox/addon/sanskrit-parser-dictionary/) and click "Add to Firefox".
 
 ## Usage
 - Double click a Sanskrit word (in Devanagari script).
   - A table, with as many rows as the word is split into, is shown. Every row shows the constituent word, its English meaning, and related कृदन्त forms (again, if applicable).
   - The constituent word can be "clicked" too, in which case a page from ashtadhyayi.com will be opened in a new tab, which has the results from all popular Sanskrit dictionaries for that word.
   - Each of the Kridanta form can be clicked as well. This will take you to sanskritabhyas.in, where more कृदन्त forms and तिङन्त forms can be looked up easily.
-- In the textbox that appears, you can also edit the word, and press enter. Then the new edited word is taken as input and the table is updated accordingly. This is helpful when you want to split the word differently, or know about a different word that just occurs to your curious mind :)
+- In the textbox that appears above the table, you can also edit the word, and press enter. Then the new edited word is taken as input and the table is updated accordingly. This is helpful when you want to split the word differently, or know about a different word that just occurs to your curious mind :)
 - Press escape to close the table.
 
 ## Limitations
@@ -42,7 +36,7 @@ As the title says, this Chrome (or Firefox) extension can:
 - Almost always, there are multiple ways to split a Sanskrit word. We simply proceed greedily (with some checks here and there)  and pick the first match. Thus, considering sentence-level context, the word split we offer may not necessarily be correct. In such cases, users are encouraged to use the textbox-editing feature and look up individual constituent words.
 
 That said, we hope to overcome some of these limitations in future!
-  
+
 ##  Feedback
 Use this [form](https://forms.gle/VUzn9PkFUVNP4DSb9), or reply to this twitter [thread](https://twitter.com/sumanthegde/status/1623233287308320768?s=20).
 
